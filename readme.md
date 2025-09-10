@@ -3,12 +3,6 @@
 A lightweight **URL Shortener** built with **Node.js** and **Express**.  
 It allows you to turn long URLs into short, shareable links like:
 
-
-The app includes:
-- A REST API
-- A minimal web interface
-- Local JSON storage (`urls.json`)
-
 ---
 
 ## 🚀 Features
@@ -29,22 +23,31 @@ The app includes:
    ```bash
    git clone https://github.com/your-username/url-shortener.git
    cd url-shortener
+   ```
 
-### Install dependencies:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-- npm install
+3. (Optional) Install `nodemon` for auto-reload during development:
+   ```bash
+   npm install --save-dev nodemon
+   ```
 
-### (Optional) install nodemon for auto-reload during development:
+---
 
-- npm install --save-dev nodemon
+## 🚀 Usage
 
-# Usage
-## Start the server
-- npm start
+### Start the server
+```bash
+npm start
+```
 
-### By default, the app runs at:
+By default, the app runs at:  
+[http://localhost:3000/](http://localhost:3000/)
 
-http://localhost:3000/
+---
 
 ## 🌐 API Guide
 
@@ -58,31 +61,35 @@ http://localhost:3000/
   "url": "https://example.com",
   "customAlias": "myalias"   // optional
 }
+```
 
-Response:
+#### Response:
+```json
 {
   "shortUrl": "http://localhost:3000/myalias"
 }
+```
 
+---
 
-2. Redirect to original URL
+### 2. Redirect to original URL
 
-GET /:code
+**GET** `/:code`
 
-Example:
+#### Example:
+`http://localhost:3000/myalias`
 
-http://localhost:3000/myalias
+➡️ Redirects to:  
+`https://example.com`
 
+---
 
-➡️ Redirects to:
+### 3. Get stats for a short URL
 
-https://example.com
+**GET** `/api/stats/:code`
 
-3. Get stats for a short URL
-
-GET /api/stats/:code
-
-Response:
+#### Response:
+```json
 {
   "code": "myalias",
   "url": "https://example.com",
@@ -90,3 +97,4 @@ Response:
   "visits": 5,
   "lastVisited": "2025-09-10T07:45:00.000Z"
 }
+```
